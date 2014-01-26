@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# Usage: scalaenv version-file-write <file> <version>
+
+set -e
+test -n "${SCALAENV_DEBUG}" && set -x
+
+SCALAENV_VERSION_FILE="${1}"
+SCALAENV_VERSION="${2}"
+
+if [ -z "${SCALAENV_VERSION}" ] || [ -z "${SCALAENV_VERSION_FILE}" ]; then
+  scalaenv-help --usage version-file-write >& 2
+  exit 1
+fi
+
+# Make sure the specified version is installed.
+scalaenv-prefix "${SCALAENV_VERSION}" > /dev/null
+
+# Write the version out to disk.
+echo "${SCALAENV_VERSION}" > "${SCALAENV_VERSION_FILE}"
+

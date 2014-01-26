@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+#
+# Summary: Set or show the local application-specific Scala version
+#
+# Usage: scalaenv local <version>
+#        scalaenv local --unset
+#
+# Sets the local application-specific Scala version by writing the
+# version name to a file named `.scala-version`.
+
+set -e
+test -n "${SCALAENV_DEBUG}" && set -x
+
+# Provide scalaenv completions
+if [ "${1}" = "--complete" ]; then
+  echo --unset
+  echo system
+  exec scalaenv-versions --bare
+fi
+
+SCALAENV_VERSION="${1}"
+
+if [ "${SCALAENV_VERSION}" = "--unset" ]; then
+  rm -f .scala-version
+elif [ -n "${SCALAENV_VERSION}" ]; then
+  previous_file="$(SCALAENV_VERSION= scalaenv-version-origin || true)"
+  scalaenv-version-file-write .scala-version "${SCALAENV_VERSION}"
+  if [ "${previous_file}" -ef .scalaenv-version ]; then
+    rm -f .scalaenv-version
+    { echo "scalaenv: removed existing \`.scalaenv-version\` file and migrated"
+      echo "    local version specification to \`.scala-version\` file"
+    } >& 2
+  fi
+else
+  scalaenv-version-file-read .scala-version ||
+    scalaenv-version-file-read .scalaenv-version ||
+    { echo "scalaenv: no local version configured for this directory"
+      exit 1
+    } >& 2
+fi
+

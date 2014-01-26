@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Summary: Show the current Scala version and its origin
+#
+# Shows the currently selected Scala Version and how it was
+# selected. To obtain only the version string, use `scalaenv
+# version-name`.
+
+set -e
+test -n "${SCALAENV_DEBUG}" && set -x
+
+echo "$(scalaenv-version-name) (set by $(scalaenv-version-origin))"
+

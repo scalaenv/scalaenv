@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+#
+# Summary: Run on executable with the selected Scala version
+#
+# Usage: scalaenv exec <command> [args ...]
+#
+# Runs on executable by first preparing PATH so that the selected Scala
+# version's `bin` directory is at the front.
+
+set -e
+test -n "${SCALAENV_DEBUG}" && set -x
+
+# Provide scalaenv completions
+if [ "${1}" = "--complete" ]; then
+  exec scalaenv shims --short
+fi
+
+SCALAENV_VERSION="$(scalaenv-version-name)"
+SCALAENV_COMMAND="${1}"
+
+if [ -z "${SCALAENV_COMMAND}" ]; then
+  scalaenv-help --usage exec >& 2
+  exit 1
+fi
+
+export SCALAENV_VERSION
+SCALAENV_COMMAND_PATH="$(scalaenv-which "${SCALAENV_COMMAND}")"
+SCALAENV_BIN_PATH="${SCALAENV_COMMAND_PATH%/*}"
+
+OLDIFS="${IFS}"
+IFS=$'\n' scripts=(`scalaenv-hooks exec`)
+IFS="${OLDIFS}"
+for script in "${scripts[@]}"; do
+  source "${script}"
+done
+
+shift 1
+if [ "${SCALAENV_VERSION}" != "system" ]; then
+  export PATH="${SCALAENV_BIN_PATH}:${PATH}"
+fi
+exec -a "${SCALAENV_COMMAND}" "${SCALAENV_COMMAND_PATH}" "${@}"
+

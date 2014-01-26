@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Summary: Explain how the current Scala version is set
+
+set -e
+test -n "${SCALAENV_DEBUG}" && set -x
+
+if [ -n "${SCALAENV_VERSION}" ]; then
+  echo "SCALAENV_VERSION environment variable"
+else
+  scalaenv-version-file
+fi
+

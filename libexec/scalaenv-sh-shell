@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+# Summary: Set or show the shell-specific Scala version
+#
+# Usage: scalaenv shell <version>
+#        scalaenv shell --unset
+
+set -e
+test -n "${SCALAENV_DEBUG}" && set -x
+
+if [ "${1}" = "--complete" ]; then
+  echo --unset
+  echo system
+  exec scalaenv-versions --base
+fi
+
+version="${1}"
+shell="$(basename "${SCALAENV_SHELL:-${SHELL}}")"
+
+if [ -z "${version}" ]; then
+  if [ -z "${SCALAENV_VERSION}" ]; then
+    echo "scalaenv: no shell-specific version configured" >& 2
+    exit 1
+  else
+    echo "echo \"\${SCALAENV_VERSION}\""
+    exit 0
+  fi
+fi
+
+if [ "${version}" = "--unset" ]; then
+  case "${shell}" in
+    * )
+      echo "unset SCALAENV_VERSION"
+      ;;
+  esac
+  exit 0
+fi
+
+if scalaenv-prefix "${version}" > /dev/null; then
+  case "${shell}" in
+    * )
+      echo "export SCALAENV_VERSION=\"${version}\""
+      ;;
+  esac
+  exit 0
+else
+  echo "false"
+  exit 1
+fi
+

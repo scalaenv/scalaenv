@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+set -e
+test -n "${SCALAENV_DEBUG}" && set -x
+
+COMMAND="${1}"
+if [ -z "${COMMAND}" ]; then
+  scalaenv-help --usage completions >& 2
+  exit 1
+fi
+
+COMMAND_PATH="$(command -v "scalaenv-${COMMAND}" || command -v "scalaenv-sh-${COMMAND}")"
+if grep -iE "^([#%]|--|//) provide scalaenv completions" "${COMMAND_PATH}" > /dev/null; then
+  shift
+  exec "${COMMAND_PATH}" --complete "${@}"
+fi
+

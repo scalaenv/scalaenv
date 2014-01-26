@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# Summary: List existing scalaenv shims
+# Usage: scalaenv shims [--short]
+
+set -e
+test -n "${SCALAENV_DEBUG}" && set -x
+
+# Provide scalaenv completions
+if [ "${1}" = "--complete" ]; then
+  echo --short
+  exit
+fi
+
+shopt -s nullglob
+
+for command in "${SCALAENV_ROOT}/shims/"*; do
+  if [ "${1}" = "--short" ]; then
+    echo "${command##*/}"
+  else
+    echo "${command}"
+  fi
+done | sort

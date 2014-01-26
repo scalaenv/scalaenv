@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+# Summary: Detect the file that sets the current scalaenv version
+
+set -e
+test -n "${SCALAENV_DEBUG}" && set -x
+
+find_local_version_file() {
+  local root="${1}"
+  while [ -n "${root}" ]; do
+    if [ -e "${root}/.scala-version" ]; then
+      echo "${root}/.scala-version"
+      exit
+    fi
+    root="${root%/*}"
+  done
+}
+
+find_local_version_file "${SCALAENV_DIR}"
+[ "${SCALAENV_DIR}" = "${PWD}" ] || find_local_version_file "${PWD}"
+
+global_version_file="${SCALAENV_ROOT}/version"
+
+if [ -e "${global_version_file}" ]; then
+  echo "${global_version_file}"
+elif [ -e "${SCALAENV_ROOT}/global" ]; then
+  echo "${SCALAENV_ROOT}/global"
+elif [ -e "${SCALAENV_ROOT}/default" ]; then
+  echo "${SCALAENV_ROOT}/default"
+else
+  echo "${global_version_file}"
+fi
+

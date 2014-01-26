@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+# Summary: List all Scala versions that contain the given executable
+# Usage: scalaenv whence [--path] <command>
+
+set -e
+test -n "${SCALAENV_DEBUG}" && set -x
+
+# Provide scalaenv completions
+if [ "${1}" = "--complete" ]; then
+  echo --path
+  exec scalaenv shims --short
+fi
+
+if [ "${1}" = "--path" ]; then
+  print_paths="1"
+  shift
+else
+  print_paths=""
+fi
+
+whence() {
+  local command="${1}"
+  scalaenv-versions --bare | while read version; do
+    path="$(scalaenv-prefix "${version}")/bin/${command}"
+    if [ -x "${path}" ]; then
+      test "${print_paths}" && echo "${path}" || echo "${version}"
+    fi
+  done
+}
+
+SCALAENV_COMMAND="${1}"
+if [ -z "${SCALAENV_COMMAND}" ]; then
+  scalaenv-help --usage whence >& 2
+  exit 1
+fi
+
+result="$(whence "${SCALAENV_COMMAND}")"
+test -n "${result}" && echo "${result}"
+

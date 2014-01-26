@@ -1,0 +1,87 @@
+#!/usr/bin/env bash
+# Summary: Display the full path to an executable
+# Usage: scalaenv which <command>
+#
+# Displays the full path to the executable that scalaenv will invoke when
+# you run the given command.
+
+set -e
+test -n "${SCALAENV_DEBUG}" && set -x
+
+# Provide scalaenv completions
+if [ "${1}" = "--complete" ]; then
+  exec scalaenv shims --short
+fi
+
+expand_path() {
+  if [ ! -d "${1}" ]; then
+    return 1
+  fi
+
+  local cwd="$(pwd)"
+  cd "${1}"
+  pwd
+  cd "${cwd}"
+}
+
+remove_from_path() {
+  local path_to_remove="$(expand_path "${1}")"
+  local result=""
+
+  if [ -z "${path_to_remove}" ]; then
+    echo "${PATH}"
+    return
+  fi
+
+  local paths
+  IFS=: paths=(${PATH})
+
+  for path in "${paths[@]}"; do
+    path="$(expand_path "${path}" || true)"
+    if [ -n "${path}" ] && [ "${path}" != "${path_to_remove}" ]; then
+      result="${result}${path}:"
+    fi
+  done
+
+  echo "${result%:}"
+}
+
+SCALAENV_VERSION="$(scalaenv-version-name)"
+SCALAENV_COMMAND="${1}"
+
+if [ -z "${SCALAENV_COMMAND}" ]; then
+  scalaenv-help --usage which >& 2
+  exit 1
+fi
+
+if [ "${SCALAENV_VERSION}" = "system" ]; then
+  PATH="$(remove_from_path "${SCALAENV_ROOT}/shims")"
+  SCALAENV_COMMAND_PATH="$(command -v "${SCALAENV_COMMAND}" || true)"
+else
+  SCALAENV_COMMAND_PATH="${SCALAENV_ROOT}/versions/${SCALAENV_VERSION}/bin/${SCALAENV_COMMAND}"
+fi
+
+OLDIFS="${IFS}"
+IFS=$'\n' scripts=(`scalaenv-hooks which`)
+IFS="${OLDIFS}"
+for script in "${scripts[@]}"; do
+  source "${script}"
+done
+
+if [ -x "${SCALAENV_COMMAND_PATH}" ]; then
+  echo "${SCALAENV_COMMAND_PATH}"
+else
+  echo "scalaenv: ${SCALAENV_COMMAND}: command not found" >& 2
+
+  versions="$(scalaenv-whence "${SCALAENV_COMMAND}" || true)"
+  if [ -n "${versions}" ]; then
+    { echo ""
+      echo "The \`${1}\` command exists in these Scala versions:"
+      echo "${versions}" | sed 's/^/  /g'
+      echo ""
+    } >& 2
+  fi
+
+  exit 127
+fi
+

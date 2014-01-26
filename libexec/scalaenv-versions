@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+# Summary: List all Scala versions available to scalaenv
+# Usage: scalaenv versions [--bare]
+#
+# Lists all Scala versions found in `${SCALAENV_ROOT}/versions/*`.
+
+set -e
+test -n "${SCALAENV_DEBUG}" && set -x
+
+if [ "${1}" = "--bare" ]; then
+  hit_prefix=""
+  miss_prefix=""
+  current_version=""
+  include_system=""
+else
+  hit_prefix="* "
+  miss_prefix="  "
+  current_version="$(scalaenv-version-name || true)"
+  include_system="1"
+fi
+
+print_version() {
+  if [ "${1}" = "${current_version}" ]; then
+    echo "${hit_prefix}$(scalaenv-version 2> /dev/null)"
+  else
+    echo "${hit_prefix}${1}"
+  fi
+}
+
+# Include "system" in the non-bare output, if it exists
+if [ -n "${include_system}" ] && SCALAENV_VERSION=system scalaenv-which scala > /dev/null 2>&1; then
+  print_version system
+fi
+
+for path in "${SCALAENV_ROOT}/versions/"*; do
+  if [ -d "${path}" ]; then
+    print_version "${path##*/}"
+  fi
+done
+

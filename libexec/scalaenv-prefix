@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+# Summary: Display prefix for a Ruby version
+# Usage: scalaenv prefix [<version>]
+#
+# Displays the directory where a Scala version is installed. If no
+# version is given, `scalaenv prefix` displays the location of the
+# currently selected version.
+
+set -e
+test -n "${SCALAENV_DEBUG}" && set -x
+
+# Provide scalaenv completions
+if [ "${1}" = "--complete" ]; then
+  echo system
+  exec scalaenv-versions --bare
+fi
+
+if [ -n "${1}" ]; then
+  export SCALAENV_VERSION="${1}"
+elif [ -z "${SCALAENV_VERSION}" ]; then
+  SCALAENV_VERSION="$(scalaenv-version-name)"
+fi
+
+if [ "${SCALAENV_VERSION}" = "system" ]; then
+  if SCALA_PATH="$(scalaenv-which scala 2> /dev/null)"; then
+    SCALA_PATH="${SCALA_PATH%/*}"
+    echo "${SCALA_PATH%/bin}"
+    exit
+  else
+    echo "scalaenv: system version not found in PATH" >& 2
+    exit 1
+  fi
+fi
+
+SCALAENV_PREFIX_PATH="${SCALAENV_ROOT}/versions/${SCALAENV_VERSION}"
+if [ ! -d "${SCALAENV_PREFIX_PATH}" ]; then
+  echo "scalaenv: version \`${SCALAENV_VERSION}\` not installed" >& 2
+  exit 1
+fi
+
+echo "${SCALAENV_PREFIX_PATH}"
+

@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+#
+# Summary: Set or show the global Scala version
+#
+# Usage: scalaenv globa <version>
+#
+# Sets the global Scala version. You can override the global version at
+# any time by setting a directory-specific version with `scalaenv local`
+# or by setting the `SCALAENV_VERSION` environment variable.
+#
+# <version> should be a string matching a Scala version known to scalaenv.
+# The special version string `system` will use your default system Scala.
+# Run `scalaenv versions` for a list of available Scala versions.
+
+set -e
+test -n "${SCALAENV_DEBUG}" && set -x
+
+# Provide scalaenv completions
+if [ "${1}" = "--complete" ]; then
+  echo system
+  exec scalaenv-versions --bare
+fi
+
+SCALAENV_VERSION="${1}"
+SCALAENV_VERSION_FILE="${SCALAENV_ROOT}/version"
+
+if [ -n "${SCALAENV_VERSION}" ]; then
+  scalaenv-version-file-write "${SCALAENV_VERSION_FILE}" "${SCALAENV_VERSION}"
+else
+  scalaenv-version-file-read "${SCALAENV_VERSION_FILE}" ||
+    scalaenv-version-file-read "${SCALAENV_ROOT}/global" ||
+    scalaenv-version-file-read "${SCALAENV_ROOT}/default" ||
+    echo system
+fi
+

@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+echo ""
+echo "Powering up... Working..."
+echo "Just a little longer..."
+
