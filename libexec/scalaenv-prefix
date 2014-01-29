@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Summary: Display prefix for a Ruby version
+# Summary: Display prefix for a Scala version
 # Usage: scalaenv prefix [<version>]
 #
 # Displays the directory where a Scala version is installed. If no

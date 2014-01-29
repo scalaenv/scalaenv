@@ -25,7 +25,7 @@ elif version_exists "${SCALAENV_VERSION#scala-}"; then
   { echo "warning: ignoring extraneous \`scala-\` prefix in version \`${SCALAENV_VERSION}\`"
     echo "         (set by $(scalaenv-version-origin))"
   } >& 2
-  echo "${SCALAENV_VERSION#ruby-}"
+  echo "${SCALAENV_VERSION#scala-}"
 else
   echo "scalaenv: version \`${SCALAENV_VERSION}\` is not installed" >& 2
   exit 1

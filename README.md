@@ -7,7 +7,7 @@ Groom your app’s Scala environment with scalaenv like [rbenv](https://github.c
 1. `git clone` scalaenv into `~/.scalaenv`.
 
     ~~~ sh
-    $ git clone git@github.com:mazgi/scalaenv.git ~/.scalaenv
+    $ git clone git://github.com/mazgi/scalaenv.git ~/.scalaenv
     ~~~
 
 2. Add `~/.scalaenv/bin` to your `$PATH` for access to the `scalaenv` command.
