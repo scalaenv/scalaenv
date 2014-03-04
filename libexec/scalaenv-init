@@ -50,7 +50,7 @@ abs_dirname() {
   cd "${cwd}"
 }
 
-root="$(abs_dirname "${@}")/.."
+root="$(abs_dirname "${0}")/.."
 
 if [ -z "${print}" ]; then
   case "${shell}" in
@@ -94,7 +94,7 @@ case "${shell}" in
     echo "export SCALAENV_SHELL=${shell}"
 esac
 
-completion="${root}/competions/scalaenv.${shell}"
+completion="${root}/completions/scalaenv.${shell}"
 if [ -r "${completion}" ]; then
   case "${shell}" in
     * ) echo "source '${completion}'" ;;
