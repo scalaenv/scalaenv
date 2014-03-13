@@ -48,6 +48,12 @@ Groom your app’s Scala environment with scalaenv like [rbenv](https://github.c
 
 ### Version History
 
+**0.0.3** (Mar 14, 2014)
+
+  * Added [Travis CI](https://travis-ci.org) status badge on README.
+  * Fixed a bug when run `rehash` subcommand.
+  * Fixed version string.
+
 **0.0.2** (Mar 04, 2014)
 
   * Added completions for `Z shell` and `Bash`.
