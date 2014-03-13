@@ -16,7 +16,7 @@ version="0.0.2"
 
 if cd "${SCALAENV_ROOT}" 2> /dev/null; then
   git_revision="$(git describe --tags HEAD 2> /dev/null || true)"
-  git_revision="${git_revision#v}"
+  git_revision="${git_revision#version/}"
 fi
 
 echo "scalaenv ${git_revision:-${version}}"

@@ -71,7 +71,7 @@ SH
 # upgraded and the existing shims need to be removed.
 remove_outdated_shims() {
   for shim in *; do
-    if ! diff "${PROTOTYPE_SHIM_PATH}" "${shim}" > /dev/null 2 >& 1; then
+    if ! diff "${PROTOTYPE_SHIM_PATH}" "${shim}" > /dev/null 2>& 1; then
       for shim in *; do rm -f "${shim}"; done
     fi
     break
