@@ -1,4 +1,7 @@
-# scalaenv
+scalaenv
+====
+
+[![Build Status](https://travis-ci.org/mazgi/scalaenv.png?branch=master)](https://travis-ci.org/mazgi/scalaenv)
 
 Groom your app’s Scala environment with scalaenv like [rbenv](https://github.com/sstephenson/rbenv) :)
 
