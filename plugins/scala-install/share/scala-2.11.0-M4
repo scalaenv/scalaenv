@@ -1,0 +1,4 @@
+sites=(
+    "http://downloads.typesafe.com/scala/2.11.0-M4"
+    );
+archive_file="scala-2.11.0-M4.tgz"

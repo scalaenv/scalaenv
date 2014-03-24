@@ -19,7 +19,7 @@ Groom your app’s Scala environment with scalaenv like [rbenv](https://github.c
     $ echo 'export PATH="${HOME}/.scalaenv/bin:${PATH}"' >> ~/.zshrc
     ~~~
 
-3. Add `scalaenv init` to your shell to enable shims and **autocompletion**.  
+3. Add `scalaenv init` to your shell to enable shims and autocompletion.
 
     ~~~ sh
     $ echo 'eval "$(scalaenv init -)"' >> ~/.zshrc
@@ -37,14 +37,29 @@ Groom your app’s Scala environment with scalaenv like [rbenv](https://github.c
 
     *Same as in previous step, use `~/.bash_profile` for Bash.*
 
-5. Download scala archive and extract into `~/.scalaenv/versions/`.
+5. Install each version of scala.
+
+    ~~~ sh
+    $ scalaenv install scala-2.10.3
+    ~~~
+
+    If show all available version, please use the following command:
+
+    ~~~ sh
+    $ scalaenv install -l
+    All available versions:
+    scala-2.10.1
+    scala-2.10.2
+    scala-2.10.3
+    ...
+    ~~~
+
+    If want to install manually, please download scala archive and extract into `~/.scalaenv/versions/`.
 
     ~~~ sh
     $ curl -LO http://www.scala-lang.org/files/archive/scala-2.10.3.tgz
     $ tar xf scala-2.10.3.tgz -C ~/.scalaenv/versions/
     ~~~
-
-    *It is only way at present.*
 
 ### Version History
 
