@@ -1,0 +1,75 @@
+#!/usr/bin/env bash
+
+set -e
+test -n "${SCALAENV_DEBUG}" && set -x
+
+if [ -z ${SCALAENV_ROOT} ]; then
+  echo "\${SCALAENV_ROOT} is not defined."
+  exit 1
+fi
+
+READLINK=$(type -p greadlink readlink | head -1)
+if [ -z "${READLINK}" ]; then
+  echo "scala-install: connot find readlink - are you missing GNU coreutils?" >& 2
+  exit 1
+fi
+
+resolve_link() {
+  ${READLINK} "${1}"
+}
+
+abs_dirname() {
+  local cwd="$(pwd)"
+  local path="${1}"
+
+  while [ -n "${path}" ]; do
+    cd "${path%/*}"
+    local name="${path##*/}"
+    path="$(resolve_link "${name}" || true)"
+  done
+
+  pwd
+  cd "${cwd}"
+}
+
+SHA1SUM=$(type -p sha1sum shasum | head -1)
+if [ -z "${SHA1SUM}" ]; then
+  echo "scala-install: connot find sha1sum - are you missing GNU coreutils?" >& 2
+  exit 1
+fi
+
+version=${1}
+recipe="$(abs_dirname ${0})/../share/${version}"
+if [ -f "${recipe}" ]; then
+  source ${recipe}
+  echo "Installing ${version}:"
+  for (( i=0; i<${#sites[@]}; ++i))
+  do
+    mkdir -p "${SCALAENV_ROOT}/versions"
+    cwd="$(pwd)"
+    cd "${SCALAENV_ROOT}/versions"
+    echo "Downloading ${version} archives..."
+    curl -#LO "${sites[$i]}/${archive_file}"
+    if [ ! -z "${sha1sum_file}" ]; then
+      curl -#LO "${sites[$i]}/${sha1sum_file}"
+      echo "Checking SHA-1 checksum..."
+      "${SHA1SUM}" --check "${sha1sum_file}"
+    fi
+    if [ $? ]; then
+      echo "Extracting files..."
+      tar xf "${SCALAENV_ROOT}/versions/${archive_file}" -C "${SCALAENV_ROOT}/versions"
+      if [ $? ]; then
+        rm -f "${SCALAENV_ROOT}/versions/${archive_file}"
+        test ! -z "${sha1sum_file}" && rm -f "${SCALAENV_ROOT}/versions/${sha1sum_file}"
+      fi
+      echo "${version} installed."
+      break
+    fi
+    cd "${cwd}"
+    echo "${version} install failed."
+  done
+else
+  echo "All available versions:"
+  ls -1 $(abs_dirname $0)/../share
+fi
+
