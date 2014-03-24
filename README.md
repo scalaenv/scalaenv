@@ -63,6 +63,10 @@ Groom your app’s Scala environment with scalaenv like [rbenv](https://github.c
 
 ### Version History
 
+**0.0.4** (Mar 25, 2014)
+
+  * Improved installation instruction by *scala-install* built-in plugin.
+
 **0.0.3** (Mar 14, 2014)
 
   * Added [Travis CI](https://travis-ci.org) status badge on README.
