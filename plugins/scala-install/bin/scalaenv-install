@@ -4,7 +4,7 @@ set -e
 test -n "${SCALAENV_DEBUG}" && set -x
 
 if [ -z ${SCALAENV_ROOT} ]; then
-  echo "\${SCALAENV_ROOT} is not defined."
+  echo "\${SCALAENV_ROOT} is not defined." >& 2
   exit 1
 fi
 
