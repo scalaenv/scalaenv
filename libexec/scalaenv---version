@@ -12,7 +12,7 @@
 set -e
 test -n "${SCALAENV_DEBUG}" && set -x
 
-version="0.0.4"
+version="0.0.5"
 
 if cd "${SCALAENV_ROOT}" 2> /dev/null; then
   git_revision="$(git describe --tags HEAD 2> /dev/null || true)"

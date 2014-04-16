@@ -5,6 +5,9 @@ scalaenv
 
 Groom your app’s Scala environment with scalaenv like [rbenv](https://github.com/sstephenson/rbenv) :)
 
+Do you need [**sbt**](http://www.scala-sbt.org) and [**Play Framework**](http://www.playframework.com) version management?
+Please refer to [**sbtenv**](https://github.com/mazgi/sbtenv) in the case of use **sbt**, and [**playenv**](https://github.com/mazgi/playenv) in the case of use **Play Framework**.
+
 ### Installation
 
 1. `git clone` scalaenv into `~/.scalaenv`.
@@ -62,6 +65,11 @@ Groom your app’s Scala environment with scalaenv like [rbenv](https://github.c
     ~~~
 
 ### Version History
+
+**0.0.5** (Apr 16, 2014)
+
+  * Added recipes for **Scala 2.10.4** and **Scala 2.11.0-RCx** to *sbt-install* built-in plugin.
+  * Added recipes for *old versions* to *sbt-install* built-in plugin.
 
 **0.0.4** (Mar 25, 2014)
 
