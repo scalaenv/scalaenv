@@ -23,7 +23,7 @@ print_version() {
   if [ "${1}" = "${current_version}" ]; then
     echo "${hit_prefix}$(scalaenv-version 2> /dev/null)"
   else
-    echo "${hit_prefix}${1}"
+    echo "${miss_prefix}${1}"
   fi
 }
 
