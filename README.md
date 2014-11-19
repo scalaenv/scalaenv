@@ -66,6 +66,11 @@ Please refer to [**sbtenv**](https://github.com/mazgi/sbtenv) in the case of use
 
 ### Version History
 
+**0.0.7** (Nov 19, 2014)
+
+  * Added recipes for **Scala 2.11.1** - **Scala 2.11.4** by @zaneli
+  * Fixed a bug when run `versions` subcommand.
+
 **0.0.6** (Apr 18, 2014)
 
   * Added recipes for **Scala 2.11.0** to *scala-install* built-in plugin.
