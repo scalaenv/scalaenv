@@ -11,7 +11,7 @@
 #   scala -version
 #
 # is equivalent to:
-#   PATH="$SCALAENV_ROOT/versions/scala-2.11.5/bin:$PATH" -version
+#   PATH="$SCALAENV_ROOT/versions/scala-2.11.5/bin:$PATH" scala -version
 
 set -e
 test -n "${SCALAENV_DEBUG}" && set -x
@@ -22,7 +22,7 @@ if [ "${1}" = "--complete" ]; then
 fi
 
 SCALAENV_VERSION="$(scalaenv-version-name)"
-SCALAENV_COMMAND="${1}"
+SCALAENV_COMMAND="$1"
 
 if [ -z "${SCALAENV_COMMAND}" ]; then
   scalaenv-help --usage exec >& 2
@@ -35,13 +35,13 @@ SCALAENV_BIN_PATH="${SCALAENV_COMMAND_PATH%/*}"
 
 OLDIFS="${IFS}"
 IFS=$'\n' scripts=(`scalaenv-hooks exec`)
-IFS="${OLDIFS}"
+IFS="$OLDIFS"
 for script in "${scripts[@]}"; do
-  source "${script}"
+  source "$script"
 done
 
 shift 1
-if [ "${SCALAENV_VERSION}" != "system" ]; then
+if [ "$SCALAENV_VERSION" != "system" ]; then
   export PATH="${SCALAENV_BIN_PATH}:${PATH}"
 fi
-exec -a "${SCALAENV_COMMAND}" "${SCALAENV_COMMAND_PATH}" "${@}"
+exec -a "$SCALAENV_COMMAND" "$SCALAENV_COMMAND_PATH" "$@"
