@@ -2,10 +2,16 @@
 #
 # Summary: Run on executable with the selected Scala version
 #
-# Usage: scalaenv exec <command> [args ...]
+# Usage: scalaenv exec <command> [arg1 arg2 ...]
 #
 # Runs on executable by first preparing PATH so that the selected Scala
 # version's `bin` directory is at the front.
+#
+# For example, if the currently selected Scala version is scala-2.11.5:
+#   scala -version
+#
+# is equivalent to:
+#   PATH="$SCALAENV_ROOT/versions/scala-2.11.5/bin:$PATH" -version
 
 set -e
 test -n "${SCALAENV_DEBUG}" && set -x
@@ -39,4 +45,3 @@ if [ "${SCALAENV_VERSION}" != "system" ]; then
   export PATH="${SCALAENV_BIN_PATH}:${PATH}"
 fi
 exec -a "${SCALAENV_COMMAND}" "${SCALAENV_COMMAND_PATH}" "${@}"
-
