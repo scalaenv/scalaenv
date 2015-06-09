@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Summary: List all available scalaenv commands
+# Usage: scalaenv commands [--sh|--no-sh]
 
 set -e
 test -n "${SCALAENV_DEBUG}" && set -x
@@ -14,4 +16,3 @@ if grep -iE "^([#%]|--|//) provide scalaenv completions" "${COMMAND_PATH}" > /de
   shift
   exec "${COMMAND_PATH}" --complete "${@}"
 fi
-
