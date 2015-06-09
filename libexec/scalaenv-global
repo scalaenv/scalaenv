@@ -2,7 +2,7 @@
 #
 # Summary: Set or show the global Scala version
 #
-# Usage: scalaenv globa <version>
+# Usage: scalaenv global <version>
 #
 # Sets the global Scala version. You can override the global version at
 # any time by setting a directory-specific version with `scalaenv local`
@@ -16,12 +16,12 @@ set -e
 test -n "${SCALAENV_DEBUG}" && set -x
 
 # Provide scalaenv completions
-if [ "${1}" = "--complete" ]; then
+if [ "$1" = "--complete" ]; then
   echo system
   exec scalaenv-versions --bare
 fi
 
-SCALAENV_VERSION="${1}"
+SCALAENV_VERSION="$1"
 SCALAENV_VERSION_FILE="${SCALAENV_ROOT}/version"
 
 if [ -n "${SCALAENV_VERSION}" ]; then
@@ -32,4 +32,3 @@ else
     scalaenv-version-file-read "${SCALAENV_ROOT}/default" ||
     echo system
 fi
-
