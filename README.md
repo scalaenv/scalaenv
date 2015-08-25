@@ -68,7 +68,7 @@ Please refer to [**sbtenv**](https://github.com/mazgi/sbtenv) in the case of use
 
 **0.0.8** (Aug 25, 2015)
 
-  * Added **Scala 2.11.5** - **Scala 2.11.7**, **Scala 2.12.0-M1** - **2.12.0-M2**
+  * Added **Scala 2.11.5** - **Scala 2.11.7**, **Scala 2.12.0-M1** - **2.12.0-M2**  
     Many thanks to @alexanderscott, @tdstein, @rwinzhang
 
 **0.0.7** (Nov 19, 2014)
