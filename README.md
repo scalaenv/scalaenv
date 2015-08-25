@@ -3,7 +3,7 @@ scalaenv
 
 [![Build Status](https://travis-ci.org/mazgi/scalaenv.png?branch=master)](https://travis-ci.org/mazgi/scalaenv)
 
-Groom your app’s Scala environment with scalaenv like [rbenv](https://github.com/sstephenson/rbenv) :)
+Groom your app's Scala environment with scalaenv like [rbenv](https://github.com/sstephenson/rbenv) :)
 
 Do you need [**sbt**](http://www.scala-sbt.org) and [**Play Framework**](http://www.playframework.com) version management?  
 Please refer to [**sbtenv**](https://github.com/mazgi/sbtenv) in the case of use **sbt**, and [**playenv**](https://github.com/mazgi/playenv) in the case of use **Play Framework**.
@@ -65,6 +65,11 @@ Please refer to [**sbtenv**](https://github.com/mazgi/sbtenv) in the case of use
     ~~~
 
 ### Version History
+
+**0.0.8** (Aug 25, 2015)
+
+  * Added **Scala 2.11.5** - **Scala 2.11.7**, **Scala 2.12.0-M1** - **2.12.0-M2**
+    Many thanks to @alexanderscott, @tdstein, @rwinzhang
 
 **0.0.7** (Nov 19, 2014)
 
