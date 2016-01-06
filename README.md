@@ -10,6 +10,8 @@ Please refer to [**sbtenv**](https://github.com/mazgi/sbtenv) in the case of use
 
 ### Installation
 
+#### Basic GitHub Checkout
+
 1. `git clone` scalaenv into `~/.scalaenv`.
 
     ~~~ sh
@@ -107,4 +109,13 @@ Please refer to [**sbtenv**](https://github.com/mazgi/sbtenv) in the case of use
 **0.0.1** (Jan 28, 2014)
 
   * Initial public release.
+
+#### Homebrew on Mac OSX
+
+As an alternative to installation via GitHub checkout, you can install scalaenv using the [Homebrew package manager](http://brew.sh) on Mac OSX.
+
+~~~ sh
+$ brew update
+$ brew install scalaenv
+~~~
 
