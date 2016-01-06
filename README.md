@@ -66,6 +66,11 @@ Please refer to [**sbtenv**](https://github.com/mazgi/sbtenv) in the case of use
 
 ### Version History
 
+**0.0.9** (Jan 06, 2016)
+
+  * Added **Scala 2.12.0-M3** and more Scala 2.10 versions.
+    Thanks to @joprice
+
 **0.0.8** (Aug 25, 2015)
 
   * Added **Scala 2.11.5** - **Scala 2.11.7**, **Scala 2.12.0-M1** - **2.12.0-M2**  
