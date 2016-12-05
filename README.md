@@ -75,7 +75,24 @@ $ brew update
 $ brew install scalaenv
 ~~~
 
+Or, if you would like to install the latest development release:
+
+~~~sh
+$ brew install --HEAD scalaenv
+~~~
+
+To upgrade HEAD package use `--fetch-HEAD` option:
+
+~~~sh
+$ brew upgrade --fetch-HEAD scalaenv
+~~~
+
 ### Version History
+
+**0.0.10** (Dec 05, 2016)
+
+  * Added **Scala 2.11.8**, **Scala 2.12.0-M4** - **2.12.0**.
+    Thanks to @odd, @3tty0n
 
 **0.0.9** (Jan 06, 2016)
 
