@@ -89,6 +89,10 @@ $ brew upgrade --fetch-HEAD scalaenv
 
 ### Version History
 
+**Unreleased**
+  * Added **Scala 2.12.1**.
+    Thanks to @3tty0n.
+
 **0.0.10** (Dec 05, 2016)
 
   * Added **Scala 2.11.8**, **Scala 2.12.0-M4** - **2.12.0**.
