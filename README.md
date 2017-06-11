@@ -5,8 +5,8 @@ scalaenv
 
 Groom your app's Scala environment with scalaenv like [rbenv](https://github.com/sstephenson/rbenv) :)
 
-Do you need [**sbt**](http://www.scala-sbt.org) and [**Play Framework**](http://www.playframework.com) version management?  
-Please refer to [**sbtenv**](https://github.com/scalaenv/sbtenv) in the case of use **sbt**, and [**playenv**](https://github.com/mazgi/playenv) in the case of use **Play Framework**.
+Do you need [**sbt**](http://www.scala-sbt.org) version management?  
+Please refer to [**sbtenv**](https://github.com/sbtenv/sbtenv) in the case of use **sbt**.
 
 ### Installation
 
