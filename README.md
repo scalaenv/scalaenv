@@ -1,12 +1,12 @@
 scalaenv
 ====
 
-[![Build Status](https://travis-ci.org/mazgi/scalaenv.png?branch=master)](https://travis-ci.org/mazgi/scalaenv)
+[![Build Status](https://travis-ci.org/scalaenv/scalaenv.svg?branch=master)](https://travis-ci.org/scalaenv/scalaenv)
 
 Groom your app's Scala environment with scalaenv like [rbenv](https://github.com/sstephenson/rbenv) :)
 
 Do you need [**sbt**](http://www.scala-sbt.org) and [**Play Framework**](http://www.playframework.com) version management?  
-Please refer to [**sbtenv**](https://github.com/mazgi/sbtenv) in the case of use **sbt**, and [**playenv**](https://github.com/mazgi/playenv) in the case of use **Play Framework**.
+Please refer to [**sbtenv**](https://github.com/scalaenv/sbtenv) in the case of use **sbt**, and [**playenv**](https://github.com/mazgi/playenv) in the case of use **Play Framework**.
 
 ### Installation
 
@@ -15,7 +15,7 @@ Please refer to [**sbtenv**](https://github.com/mazgi/sbtenv) in the case of use
 1. `git clone` scalaenv into `~/.scalaenv`.
 
     ~~~ sh
-    $ git clone git://github.com/mazgi/scalaenv.git ~/.scalaenv
+    $ git clone git://github.com/scalaenv/scalaenv.git ~/.scalaenv
     ~~~
 
 2. Add `~/.scalaenv/bin` to your `$PATH` for access to the `scalaenv` command.
