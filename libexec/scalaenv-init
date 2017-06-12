@@ -60,6 +60,8 @@ if [ -z "${print}" ]; then
     zsh )
       profile='~/.zshrc'
       ;;
+    fish )
+      profile='~/.config/fish/config.fish'
     * )
       profile='your profile'
       ;;
@@ -83,6 +85,9 @@ mkdir -p "${SCALAENV_ROOT}/"{shims,versions}
 
 if [[ ":${PATH}:" != *:"${SCALAENV_ROOT}/shims":* ]]; then
   case "${shell}" in
+    fish )
+      echo 'setenv PATH "'${SCALAENV_ROOT}'/shims"' '$PATH' ';'
+      ;;
     * )
       echo 'export PATH="'${SCALAENV_ROOT}'/shims:${PATH}"'
       ;;
@@ -107,6 +112,22 @@ fi
 
 commands=(`scalaenv-commands --sh`)
 case "${shell}" in
+  fish )
+  cat <<EOS
+function rbenv
+  set command \$argv[1]
+  if [ (count \$argv) -gt 0 ]
+    set -e argv[1]
+  end
+  switch "\$command"
+  case ${commands[*]}
+    eval (rbenv "sh-\$command" \$argv)
+  case '*'
+    command rbenv "\$command" \$argv
+  end
+end
+EOS
+  ;;
   * )
     cat <<EOS
  scalaenv() {
@@ -130,4 +151,3 @@ cat <<EOS
   esac
 }
 EOS
-

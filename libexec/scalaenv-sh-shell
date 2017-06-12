@@ -28,6 +28,9 @@ fi
 
 if [ "${version}" = "--unset" ]; then
   case "${shell}" in
+    fish )
+      echo "set -e SCALAENV_VERSION"
+      ;;
     * )
       echo "unset SCALAENV_VERSION"
       ;;
@@ -37,6 +40,8 @@ fi
 
 if scalaenv-prefix "${version}" > /dev/null; then
   case "${shell}" in
+    fish )
+      echo "setenv SCALAENV_VERSION \"${version}\""
     * )
       echo "export SCALAENV_VERSION=\"${version}\""
       ;;
