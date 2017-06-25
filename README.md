@@ -89,6 +89,15 @@ $ brew upgrade --fetch-HEAD scalaenv
 
 ### Version History
 
+**0.0.13**
+  * dotty support :tada:
+    ~~~sh
+    scalaenv install dotty-0.1.2-RC1
+    scalaenv global dotty-0.1.2-RC1-bin-SNAPSHOT
+    scalaenv rehash
+    dotr
+    ~~~
+
 **0.0.12** (Apr 24, 2017)
   * Added **Scala 2.11.9** - **Scala 2.11.11** , **Scala 2.12.2** - **Scala 2.13.0-M1**.
     Thanks to @Kaioru..
@@ -143,4 +152,3 @@ $ brew upgrade --fetch-HEAD scalaenv
 **0.0.1** (Jan 28, 2014)
 
   * Initial public release.
-
