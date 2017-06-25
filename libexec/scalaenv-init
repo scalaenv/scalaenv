@@ -4,6 +4,16 @@
 set -e
 test -n "${SCALAENV_DEBUG}" && set -x
 
+# Provide scalaenv completions
+if [ "$1" = "--complete" ]; then
+  echo -
+  echo --no-rehash
+  echo bash
+  echo fish
+  echo zsh
+  exit
+fi
+
 print=""
 no_rehash=""
 for args in "${@}"
@@ -115,16 +125,16 @@ commands=(`scalaenv-commands --sh`)
 case "${shell}" in
   fish )
   cat <<EOS
-function rbenv
+function scalaenv
   set command \$argv[1]
   if [ (count \$argv) -gt 0 ]
     set -e argv[1]
   end
   switch "\$command"
   case ${commands[*]}
-    eval (rbenv "sh-\$command" \$argv)
+    eval (scalaenv "sh-\$command" \$argv)
   case '*'
-    command rbenv "\$command" \$argv
+    command scalaenv "\$command" \$argv
   end
 end
 EOS
