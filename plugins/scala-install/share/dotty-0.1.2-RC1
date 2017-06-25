@@ -1,0 +1,4 @@
+sites=(
+    "https://github.com/lampepfl/dotty/releases/download/0.1.2-RC1"
+    );
+archive_file="dotty-0.1.2-RC1.tar.gz"
