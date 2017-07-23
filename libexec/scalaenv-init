@@ -4,6 +4,16 @@
 set -e
 test -n "${SCALAENV_DEBUG}" && set -x
 
+# Provide scalaenv completions
+if [ "$1" = "--complete" ]; then
+  echo -
+  echo --no-rehash
+  echo bash
+  echo fish
+  echo zsh
+  exit
+fi
+
 print=""
 no_rehash=""
 for args in "${@}"
@@ -60,6 +70,9 @@ if [ -z "${print}" ]; then
     zsh )
       profile='~/.zshrc'
       ;;
+    fish )
+      profile='~/.config/fish/config.fish'
+      ;;
     * )
       profile='your profile'
       ;;
@@ -83,6 +96,9 @@ mkdir -p "${SCALAENV_ROOT}/"{shims,versions}
 
 if [[ ":${PATH}:" != *:"${SCALAENV_ROOT}/shims":* ]]; then
   case "${shell}" in
+    fish )
+      echo 'setenv PATH "'${SCALAENV_ROOT}'/shims"' '$PATH' ';'
+      ;;
     * )
       echo 'export PATH="'${SCALAENV_ROOT}'/shims:${PATH}"'
       ;;
@@ -107,6 +123,22 @@ fi
 
 commands=(`scalaenv-commands --sh`)
 case "${shell}" in
+  fish )
+  cat <<EOS
+function scalaenv
+  set command \$argv[1]
+  if [ (count \$argv) -gt 0 ]
+    set -e argv[1]
+  end
+  switch "\$command"
+  case ${commands[*]}
+    eval (scalaenv "sh-\$command" \$argv)
+  case '*'
+    command scalaenv "\$command" \$argv
+  end
+end
+EOS
+  ;;
   * )
     cat <<EOS
  scalaenv() {
@@ -130,4 +162,3 @@ cat <<EOS
   esac
 }
 EOS
-

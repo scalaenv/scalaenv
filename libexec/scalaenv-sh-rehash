@@ -14,6 +14,9 @@ shell="$(basename "${SCALAENV_SHELL:-${SHELL}}")"
 scalaenv-rehash
 
 case "${shell}" in
+fish )
+  # nothing to do
+  ;;
 * )
   echo "hash -r 2> /dev/null || true"
   ;;
