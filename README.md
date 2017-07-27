@@ -89,7 +89,12 @@ $ brew upgrade --fetch-HEAD scalaenv
 
 ### Version History
 
-**0.0.13**
+**0.0.14** (Jul 28, 2017)
+  * Added **dotty-0.2.0-RC1**
+  * Supported for fish shell :tada: 
+    * https://github.com/scalaenv/scalaenv/pull/44
+
+**0.0.13** (Jun 25, 2017)
   * dotty support :tada:
     ~~~sh
     scalaenv install dotty-0.1.2-RC1
