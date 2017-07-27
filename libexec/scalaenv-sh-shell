@@ -5,19 +5,19 @@
 #        scalaenv shell --unset
 
 set -e
-test -n "${SCALAENV_DEBUG}" && set -x
+[ -n "$SCALAENV_DEBUG" ] && set -x
 
-if [ "${1}" = "--complete" ]; then
+if [ "$1" = "--complete" ]; then
   echo --unset
   echo system
   exec scalaenv-versions --base
 fi
 
-version="${1}"
-shell="$(basename "${SCALAENV_SHELL:-${SHELL}}")"
+version="$1"
+shell="$(basename "${SCALAENV_SHELL:-$SHELL}")"
 
-if [ -z "${version}" ]; then
-  if [ -z "${SCALAENV_VERSION}" ]; then
+if [ -z "$version" ]; then
+  if [ -z "$SCALAENV_VERSION" ]; then
     echo "scalaenv: no shell-specific version configured" >& 2
     exit 1
   else
@@ -26,19 +26,69 @@ if [ -z "${version}" ]; then
   fi
 fi
 
-if [ "${version}" = "--unset" ]; then
-  case "${shell}" in
+if [ "$version" = "--unset" ]; then
+  case "$shell" in
+    fish )
+      echo 'set -gu SCALAENV_VERSION_OLD "$SCALAENV_VERSION"'
+      echo "set -e SCALAENV_VERSION"
+      ;;
     * )
+      echo 'SCALAENV_VERSION_OLD="$SCALAENV_VERSION"'
       echo "unset SCALAENV_VERSION"
       ;;
   esac
   exit 0
 fi
 
-if scalaenv-prefix "${version}" > /dev/null; then
-  case "${shell}" in
+if [ "$version" = "-" ]; then
+  case "$shell" in
+  fish )
+    cat <<EOS
+if set -q SCALAENV_VERSION_OLD
+  if [ -n "\$SCALAENV_VERSION_OLD" ]
+    set SCALAENV_VERSION_OLD_ "\$SCALAENV_VERSION"
+    set -gx SCALAENV_VERSION "\$SCALAENVENV_VERSION_OLD"
+    set -gu SCALAENV_VERSION_OLD "\$SCALAENV_VERSION_OLD_"
+    set -e SCALAENV_VERSION_OLD_
+  else
+    set -gu SCALAENV_VERSION_OLD "\$SCALAENV_VERSION"
+    set -e SCALAENV_VERSION
+  end
+else
+  echo "scalaenv: SCALAENV_VERSION_OLD is not set" >&2
+  false
+end
+EOS
+    ;;
+  * )
+    cat <<EOS
+if [ -n "\${SCALAENV_VERSION_OLD+x}" ]; then
+  if [ -n "\$SCALAENV_VERSION_OLD" ]; then
+    SCALAENV_VERSION_OLD_="\$SCALAENV_VERSION"
+    export SCALAENV_VERSION="\$SCALAENV_VERSION_OLD"
+    SCALAENV_VERSION_OLD="\$SCALAENV_VERSION_OLD_"
+    unset SCALAENV_VERSION_OLD_
+  else
+    SCALAENV_VERSION_OLD="\$SCALAENV_VERSION"
+    unset SCALAENV_VERSION
+  fi
+else
+  echo "rbenv: SCALAENV_VERSION_OLD is not set" >&2
+  false
+fi
+EOS
+    ;;
+  esac
+  exit
+fi
+
+if scalaenv-prefix "$version" > /dev/null; then
+  case "$shell" in
+    fish )
+      echo 'setenv SCALAENV_VERSION \"$version\"'
+      ;;
     * )
-      echo "export SCALAENV_VERSION=\"${version}\""
+      echo "export SCALAENV_VERSION=\"$version\""
       ;;
   esac
   exit 0
