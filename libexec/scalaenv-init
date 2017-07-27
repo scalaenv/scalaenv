@@ -10,26 +10,27 @@ if [ "$1" = "--complete" ]; then
   echo --no-rehash
   echo bash
   echo fish
+  echo ksh
   echo zsh
   exit
 fi
 
 print=""
 no_rehash=""
-for args in "${@}"
+for args in "$@"
 do
-  if [ "${args}" = "-" ]; then
+  if [ "$args" = "-" ]; then
     print=1
     shift
   fi
-  if [ "${args}" = "--no-rehash" ]; then
+  if [ "$args" = "--no-rehash" ]; then
     no_rehash=1
     shift
   fi
 done
 
-shell="${1}"
-if [ -z "${shell}" ]; then
+shell="$1"
+if [ -z "$shell" ]; then
   shell="$(ps c -p "${PPID}" -o 'ucomm=' 2> /dev/null || true)"
   shell="${shell##-}"
   shell="${shell%% *}"
@@ -42,33 +43,18 @@ if [ -z "${READLINK}" ]; then
   exit 1
 fi
 
-resolve_link() {
-  ${READLINK} "${1}"
-}
+root="${0%/*}/.."
 
-abs_dirname() {
-  local cwd="$(pwd)"
-  local path="${1}"
-
-  while [ -n "${path}" ]; do
-    cd "${path%/*}"
-    local name="${path##*/}"
-    path="$(resolve_link "${name}" || true)"
-  done
-
-  pwd
-  cd "${cwd}"
-}
-
-root="$(abs_dirname "${0}")/.."
-
-if [ -z "${print}" ]; then
-  case "${shell}" in
+if [ -z "$print" ]; then
+  case "$shell" in
     bash )
       profile='~/.bash_profile'
       ;;
     zsh )
       profile='~/.zshrc'
+      ;;
+    ksh )
+      profile='~/.profile'
       ;;
     fish )
       profile='~/.config/fish/config.fish'
@@ -81,7 +67,7 @@ if [ -z "${print}" ]; then
   { echo "# Load scalaenv automatically by adding"
     echo "# the following to \"${profile}\":"
     echo ""
-    case "${shell}" in
+    case "$shell" in
       fish )
         echo 'status --is-interactive; and source (scalaenv init -|psub)'
         ;;
@@ -98,26 +84,21 @@ fi
 mkdir -p "${SCALAENV_ROOT}/"{shims,versions}
 
 if [[ ":${PATH}:" != *:"${SCALAENV_ROOT}/shims":* ]]; then
-  case "${shell}" in
+  case "$shell" in
     fish )
-      echo 'set -gx PATH "'${SCALAENV_ROOT}'/shims"' '\$PATH'
+      echo 'set -gx PATH "'${SCALAENV_ROOT}'/shims"' '$PATH' ';'
+      echo "set -gx SCALAENV_SHELL $shell"
       ;;
     * )
       echo 'export PATH="'${SCALAENV_ROOT}'/shims:${PATH}"'
+      echo "export SCALAENV_SHELL=$shell"
       ;;
   esac
 fi
 
-case "${shell}" in
-  * )
-    echo "export SCALAENV_SHELL=${shell}"
-esac
-
 completion="${root}/completions/scalaenv.${shell}"
-if [ -r "${completion}" ]; then
-  case "${shell}" in
-    * ) echo "source '${completion}'" ;;
-  esac
+if [ -r "$completion" ]; then
+  echo "source '$completion'"
 fi
 
 if [ -z "${no_rehash}" ]; then
@@ -125,7 +106,7 @@ if [ -z "${no_rehash}" ]; then
 fi
 
 commands=(`scalaenv-commands --sh`)
-case "${shell}" in
+case "$shell" in
   fish )
   cat <<EOS
 function scalaenv
@@ -140,6 +121,12 @@ function scalaenv
     command scalaenv "\$command" \$argv
   end
 end
+EOS
+  ;;
+  ksh )
+  cat <<EOS
+function rbenv {
+  typeset command
 EOS
   ;;
   * )
