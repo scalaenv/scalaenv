@@ -4,10 +4,8 @@
 #
 # Usage: scalaenv install <version>
 #        scalaenv install -l|--list
-#        scalaenv install --version
 #
 #   -l/--list          List all available versions
-#   -s/--skip-existing Skip if the version appears to be installed already
 #
 # Install available Scala versions
 set -e
