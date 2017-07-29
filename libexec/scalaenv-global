@@ -21,14 +21,21 @@ if [ "$1" = "--complete" ]; then
   exec scalaenv-versions --bare
 fi
 
-SCALAENV_VERSION="$1"
+SCALAENV_VERSIONS=("$@")
 SCALAENV_VERSION_FILE="${SCALAENV_ROOT}/version"
 
-if [ -n "${SCALAENV_VERSION}" ]; then
-  scalaenv-version-file-write "${SCALAENV_VERSION_FILE}" "${SCALAENV_VERSION}"
+if [ -n "$SCALAENV_VERSIONS" ]; then
+  scalaenv-version-file-write "$SCALAENV_VERSION_FILE" "${SCALAENV_VERSIONS[@]}"
 else
-  scalaenv-version-file-read "${SCALAENV_VERSION_FILE}" ||
+  OLDIFS="$IFS"
+  IFS=: versions=($(
+    scalaenv-version-file-read "$SCALAENV_VERSION_FILE" ||
     scalaenv-version-file-read "${SCALAENV_ROOT}/global" ||
     scalaenv-version-file-read "${SCALAENV_ROOT}/default" ||
     echo system
+  ))
+  IFS="$OLDIFS"
+  for version in "${versions[@]}"; do
+    echo "$version"
+  done
 fi
