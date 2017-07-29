@@ -45,6 +45,10 @@ if [ -f "${recipe}" ]; then
   echo "Installing ${version}:"
   for (( i=0; i<${#sites[@]}; ++i))
   do
+    if [ -d ${SCALAENV_ROOT}/versions/${version} ]; then
+      echo "${version} is already installed."
+      break
+    fi
     mkdir -p "${SCALAENV_ROOT}/versions"
     cwd="$(pwd)"
     cd "${SCALAENV_ROOT}/versions"
