@@ -57,7 +57,14 @@ if [ -f "${recipe}" ]; then
     fi
     if [ $? ]; then
       echo "Extracting files..."
-      tar xf "${SCALAENV_ROOT}/versions/${archive_file}" -C "${SCALAENV_ROOT}/versions"
+      if [ $(echo ${SCALAENV_ROOT}/versions/${archive_file} | grep "dotty") ]; then
+        tar xf "${SCALAENV_ROOT}/versions/${archive_file}" -C "${SCALAENV_ROOT}/versions"
+        if [ -d ${SCALAENV_ROOT}/versions/${version}-bin-SNAPSHOT ]; then
+          mv "${SCALAENV_ROOT}/versions/${version}-bin-SNAPSHOT" "${SCALAENV_ROOT}/versions/${version}"
+        fi
+      else
+        tar xf "${SCALAENV_ROOT}/versions/${archive_file}" -C "${SCALAENV_ROOT}/versions"
+      fi
       if [ $? ]; then
         rm -f "${SCALAENV_ROOT}/versions/${archive_file}"
         test ! -z "${sha1sum_file}" && rm -f "${SCALAENV_ROOT}/versions/${sha1sum_file}"
