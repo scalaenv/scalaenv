@@ -54,3 +54,8 @@ if [ -z "$FORCE" ]; then
   * ) exit 1 ;;
   esac
 fi
+
+if [ -d "$PREFIX" ]; then
+  rm -rf "$PREFIX"
+  scalaenv-rehash
+fi
