@@ -3,11 +3,8 @@
 # Summary: Install a Scala/Dotty version
 #
 # Usage: scalaenv install <version>
-#        scalaenv install -l|--list
 #
-#   -l/--list          List all available versions
-#
-# Install available Scala versions
+# Install available Scala/Dotty versions
 set -e
 test -n "${SCALAENV_DEBUG}" && set -x
 
