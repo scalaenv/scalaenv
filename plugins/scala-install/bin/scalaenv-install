@@ -48,12 +48,12 @@ recipe="$(abs_dirname ${0})/../share/${version}"
 if [ -f "${recipe}" ]; then
   source ${recipe}
   echo "Installing ${version}:"
+  if [ -d ${SCALAENV_ROOT}/versions/${version} ]; then
+    echo "${version} is already installed."
+    exit 1
+  fi
   for (( i=0; i<${#sites[@]}; ++i))
   do
-    if [ -d ${SCALAENV_ROOT}/versions/${version} ]; then
-      echo "${version} is already installed."
-      break
-    fi
     mkdir -p "${SCALAENV_ROOT}/versions"
     cwd="$(pwd)"
     cd "${SCALAENV_ROOT}/versions"
