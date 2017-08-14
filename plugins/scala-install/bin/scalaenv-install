@@ -5,9 +5,11 @@
 # Usage: scalaenv install [-f] <version>
 #        scalaenv install -l|--list
 #        scalaenv install --version
+#        scalaenv install -h|--help
 #
 #   -l/--list             List all available versions
 #   -f/--force            Install even if the version appears to be installed already
+#   -h/--help             Show the usage for `scalaenv-install`
 #
 # Install available Scala/Dotty versions
 set -e
