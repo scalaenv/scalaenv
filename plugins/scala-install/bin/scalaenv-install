@@ -4,7 +4,6 @@
 #
 # Usage: scalaenv install [-f] <version>
 #        scalaenv install -l|--list
-#        scalaenv install --version
 #        scalaenv install -h|--help
 #
 #   -l/--list             List all available versions
@@ -66,9 +65,6 @@ for OPT in "$@"; do
     '-f' | '--force' )
       FORCE=true
       shift 1
-      ;;
-    '--version' )
-      exec scalaenv-version
       ;;
     '-' | '--' )
       shift 1
