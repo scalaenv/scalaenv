@@ -2,7 +2,12 @@
 #
 # Summary: Install a Scala/Dotty version
 #
-# Usage: scalaenv install <version>
+# Usage: scalaenv install [-f] <version>
+#        scalaenv install -l|--list
+#        scalaenv install --version
+#
+#   -l/--list             List all available versions
+#   -f/--force            Install even if the version appears to be installed already
 #
 # Install available Scala/Dotty versions
 set -e
@@ -18,6 +23,11 @@ if [ -z "${READLINK}" ]; then
   echo "scala-install: connot find readlink - are you missing GNU coreutils?" >& 2
   exit 1
 fi
+
+usage () {
+  scalaenv-help install 2>/dev/null
+  [ -z "$1" ] || exit "$1"
+}
 
 resolve_link() {
   ${READLINK} "${1}"
@@ -37,55 +47,136 @@ abs_dirname() {
   cd "${cwd}"
 }
 
+
+unset FORCE
+unset VERSION
+
+for OPT in "$@"; do
+  case "$OPT" in
+    '-h' | '--help' )
+      usage 0
+      ;;
+    '-l' | '--list' )
+      echo "All available versions:"
+      ls -1 $(abs_dirname $0)/../share
+      exit 0
+      ;;
+    '-f' | '--force' )
+      FORCE=true
+      shift 1
+      ;;
+    '--version' )
+      exec scalaenv-version
+      ;;
+    '-' | '--' )
+      shift 1
+      param+=( "$@" )
+      break
+      ;;
+    -*)
+      echo "$(basename $0): illegal option -- '$(echo $1 | sed 's/^-*//')'" 1>&2
+      exit 1
+      ;;
+    *)
+      if [[ ! -z "$1" ]] && [[ ! "$1" =~ ^-+ ]]; then
+        param+=( "$1" )
+        shift 1
+      fi
+      ;;
+  esac
+done
+
+if [ -z $param ]; then
+  usage 1
+fi
+
+VERSION=${param}
 SHA1SUM=$(type -p sha1sum shasum | head -1)
+
 if [ -z "${SHA1SUM}" ]; then
   echo "scala-install: connot find sha1sum - are you missing GNU coreutils?" >& 2
   exit 1
 fi
 
-version=${1}
-recipe="$(abs_dirname ${0})/../share/${version}"
-if [ -f "${recipe}" ]; then
-  source ${recipe}
-  echo "Installing ${version}:"
-  if [ -d ${SCALAENV_ROOT}/versions/${version} ]; then
-    echo "${version} is already installed."
-    exit 1
+if [ -d ${SCALAENV_ROOT}/versions/${VERSION} ]; then
+  if [ -z "$FORCE" ]; then
+    echo "scalaenv: ${VERSION} already exists" >&2
+    read -p "continue with installation? (y/N) "
+    case "$REPLY" in
+      y* | Y* ) ;;
+      * ) exit 1 ;;
+    esac
   fi
-  for (( i=0; i<${#sites[@]}; ++i))
-  do
-    mkdir -p "${SCALAENV_ROOT}/versions"
-    cwd="$(pwd)"
-    cd "${SCALAENV_ROOT}/versions"
-    echo "Downloading ${version} archives..."
-    curl -#LO "${sites[$i]}/${archive_file}"
-    if [ ! -z "${sha1sum_file}" ]; then
-      curl -#LO "${sites[$i]}/${sha1sum_file}"
-      echo "Checking SHA-1 checksum..."
-      "${SHA1SUM}" --check "${sha1sum_file}"
-    fi
-    if [ $? ]; then
-      echo "Extracting files..."
-      if [ $(echo ${SCALAENV_ROOT}/versions/${archive_file} | grep "dotty") ]; then
-        tar xf "${SCALAENV_ROOT}/versions/${archive_file}" -C "${SCALAENV_ROOT}/versions"
-        if [ -d ${SCALAENV_ROOT}/versions/${version}-bin-SNAPSHOT ]; then
-          mv "${SCALAENV_ROOT}/versions/${version}-bin-SNAPSHOT" "${SCALAENV_ROOT}/versions/${version}"
-        fi
-      else
-        tar xf "${SCALAENV_ROOT}/versions/${archive_file}" -C "${SCALAENV_ROOT}/versions"
-      fi
-      if [ $? ]; then
-        rm -f "${SCALAENV_ROOT}/versions/${archive_file}"
-        test ! -z "${sha1sum_file}" && rm -f "${SCALAENV_ROOT}/versions/${sha1sum_file}"
-      fi
-      echo "${version} installed."
-      break
-    fi
-    cd "${cwd}"
-    echo "${version} install failed."
-  done
-else
-  echo "All available versions:"
-  ls -1 $(abs_dirname $0)/../share
 fi
 
+# scalaenv's recipe for installing scala/dotty binary
+RECIPE="$(abs_dirname ${0})/../share/${VERSION}"
+
+# if PREFIX is existed, PREFIX_EXISTS is 1
+PREFIX="${SCALAENV_ROOT}/versions/${VERSION}"
+[ -d "${PREFIX}" ] && PREFIX_EXISTS=1
+
+scalaenv-build () {
+  if [ -f "${RECIPE}" ]; then
+    source ${RECIPE}
+    echo "Installing ${VERSION}:"
+    for (( i=0; i<${#sites[@]}; ++i))
+    do
+      versions_dir="${SCALAENV_ROOT}/versions"
+      mkdir -p ${versions_dir}
+      cwd="$(pwd)"
+      cd "${SCALAENV_ROOT}/versions"
+      echo "Downloading ${VERSION} archives..."
+      curl -#LO "${sites[$i]}/${archive_file}"
+      if [ ! -z "${sha1sum_file}" ]; then
+        curl -#LO "${sites[$i]}/${sha1sum_file}"
+        echo "Checking SHA-1 checksum..."
+        "${SHA1SUM}" --check "${sha1sum_file}"
+      fi
+      if [ $? ]; then
+        echo "Extracting files..."
+        if [ -d "${versions_dir}/${VERSION}" ]; then
+          rm -rf "${versions_dir}/${VERSION}"
+        fi
+        mkdir -p "${versions_dir}/${VERSION}" && \
+          tar xf "${versions_dir}/${archive_file}" \
+              -C "${versions_dir}/${VERSION}" \
+              --strip-components 1
+        if [ $? ]; then
+          rm -f "${versions_dir}/${archive_file}"
+          test ! -z "${sha1sum_file}" && rm -f "${versions_dir}/${sha1sum_file}"
+        fi
+        echo "${VERSION} installed."
+        break
+      fi
+      cd "${cwd}"
+      echo "${VERSION} install failed."
+    done
+  else
+    {
+      echo "$(basename $0): definition not found: ${VERSION}"
+      echo
+      echo "See all available versions with \`scalaenv install --list\`."
+      echo
+      echo -n "If the version you need is missing, try upgrading scalaenv."
+      echo
+    } >&2
+  fi
+}
+
+cleanup () {
+  [ -z "${PREFIX_EXISTS}" ] && rm -rf "$PREFIX"
+}
+
+# Invoke `scalaenv-build` and record the exit status in $STATUS
+STATUS=0
+scalaenv-build || STATUS="$?"
+
+# Run `scalaenv-rehash` after a successful installation
+if [ "$STATUS" == "0" ]; then
+  scalaenv-rehash
+else
+  cleanup
+fi
+
+exit "$STATUS"
