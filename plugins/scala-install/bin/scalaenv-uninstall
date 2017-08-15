@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Summary: Uninstall a specific Scala version
+# Summary: Uninstall a specific Scala/Dotty version
 #
 # Usage: scalaenv uninstall [-f|--force] <version>
 #
