@@ -25,6 +25,15 @@ if [ -z "${READLINK}" ]; then
   exit 1
 fi
 
+# Provide scalaenv completions
+if [ "$1" = "--complete" ]; then
+  echo --list
+  echo --force
+  echo --help
+  echo --version
+  exit 1
+fi
+
 usage () {
   scalaenv-help install 2>/dev/null
   [ -z "$1" ] || exit "$1"
@@ -47,7 +56,6 @@ abs_dirname() {
   pwd
   cd "${cwd}"
 }
-
 
 unset FORCE
 unset VERSION
