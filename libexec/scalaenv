@@ -25,6 +25,14 @@ if [ -z "${READLINK}" ]; then
   exit 1
 fi
 
+abort() {
+  { if [ "$#" -eq 0 ]; then cat -
+    else echo "scalaenv: $*"
+    fi
+  } >&2
+  exit 1
+}
+
 resolve_link() {
   ${READLINK} "${1}"
 }
@@ -86,20 +94,29 @@ shopt -u nullglob
 
 command="${1}"
 case "${command}" in
-  "" | "-h" | "--help" )
-    echo -e "$(scalaenv-version)\n$(scalaenv-help)" >& 2
+  "" )
+    echo -e "$(scalaenv---version)\n$(scalaenv-help)" >& 2 | abort
     ;;
-  "-v" )
+  "-h" | "--help" )
+    exec scalaenv-help
+    ;;
+  "-v" | "--version" )
     exec scalaenv---version
     ;;
   * )
     command_path="$(command -v "scalaenv-${command}" || true)"
-    if [ -z "${command_path}" ]; then
-      echo "scalaenv: no such sub-command \"${command}\"" >& 2
-      exit 1
-    fi
+    [ -n "$command_path" ] || abort "no such command \`$command\`"
+
     shift 1
-    exec "${command_path}" "${@}"
+    if [ "$1" = --help ]; then
+      if [[ "$command" == "sh-"* ]]; then
+        echo "scalaenv help \"$command\""
+      else
+        exec scalaenv-help "$command"
+      fi
+    else
+      exec "$command_path" "$@"
+    fi
     ;;
 esac
 
