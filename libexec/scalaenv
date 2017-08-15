@@ -95,7 +95,9 @@ shopt -u nullglob
 command="${1}"
 case "${command}" in
   "" )
-    echo -e "$(scalaenv---version)\n$(scalaenv-help)" >& 2 | abort
+    { scalaenv---version
+      scalaenv-help
+    } | abort
     ;;
   "-h" | "--help" )
     exec scalaenv-help
