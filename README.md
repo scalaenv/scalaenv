@@ -53,10 +53,10 @@ Please refer to [**sbtenv**](https://github.com/sbtenv/sbtenv) in the case of us
     ~~~ sh
     $ scalaenv install -l
     All available versions:
-    scala-2.10.1
-    scala-2.10.2
-    scala-2.10.3
-    ...
+      scala-2.10.1
+      scala-2.10.2
+      scala-2.10.3
+      ...
     ~~~
 
     If want to install manually, please download scala archive and extract into `~/.scalaenv/versions/`.
@@ -66,9 +66,9 @@ Please refer to [**sbtenv**](https://github.com/sbtenv/sbtenv) in the case of us
     $ tar xf scala-2.10.3.tgz -C ~/.scalaenv/versions/
     ~~~
 
-#### Homebrew on Mac OSX
+#### Homebrew on macOS
 
-As an alternative to installation via GitHub checkout, you can install scalaenv using the [Homebrew package manager](http://brew.sh) on Mac OSX.
+As an alternative to installation via GitHub checkout, you can install scalaenv using the [Homebrew package manager](http://brew.sh) on macOS.
 
 ~~~ sh
 $ brew update
