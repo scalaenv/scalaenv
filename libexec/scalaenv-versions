@@ -7,7 +7,22 @@
 set -e
 test -n "${SCALAENV_DEBUG}" && set -x
 
-if [ "${1}" = "--bare" ]; then
+unset bare
+# Provide scalaenv completions
+for arg; do
+  case "$arg" in
+  --complete )
+    echo --bare
+    exit ;;
+  --bare ) bare=1 ;;
+  * )
+    scalaenv-help --usage versions >&2
+    exit 1
+    ;;
+  esac
+done
+
+if [ -n "$bare" ]; then
   hit_prefix=""
   miss_prefix=""
   current_version=""
@@ -37,4 +52,3 @@ for path in "${SCALAENV_ROOT}/versions/"*; do
     print_version "${path##*/}"
   fi
 done
-

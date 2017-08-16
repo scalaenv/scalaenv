@@ -10,8 +10,10 @@
 #
 set -e
 
+# Provide scalaenv completions
 if [ "$1" = "--complete" ]; then
   echo --force
+  echo --help
   exec scalaenv versions --bare
 fi
 
@@ -44,11 +46,11 @@ PREFIX="${SCALAENV_ROOT}/versions/${VERSION_NAME}"
 
 if [ -z "$FORCE" ]; then
   if [ ! -d "$PREFIX" ]; then
-    echo "scalaenv: version \`$VERSION_NAME\` not installed" >&2
+    echo "scalaenv: version \`$VERSION_NAME' not installed" >&2
     exit 1
   fi
 
-  read -p "scalaenv: remove $PREFIX? "
+  read -p "scalaenv: remove $PREFIX? [yN] "
   case "$REPLY" in
   y* | Y* ) ;;
   * ) exit 1 ;;
