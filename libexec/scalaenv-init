@@ -125,7 +125,7 @@ EOS
   ;;
   ksh )
   cat <<EOS
-function rbenv {
+function scalaenv {
   typeset command
 EOS
   ;;
