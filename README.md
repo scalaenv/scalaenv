@@ -89,6 +89,15 @@ $ brew upgrade --fetch-HEAD scalaenv
 
 ### Version History
 
+**0.0.15** (Aug 17, 2017)
+
+  - Implemented `saclaenv uninstall`
+  - Enhanced `scalaenv install`
+    - Added usage for `scalaenv install`
+    - Added completions for  `scalaenv install`
+    - etc...
+  - Added new scala archives (**2.12.3** and **2.13.0-M2**)
+
 **0.0.14** (Jul 28, 2017)
   * Added **dotty-0.2.0-RC1**
   * Supported for fish shell :tada: 
