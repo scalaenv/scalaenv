@@ -100,7 +100,7 @@ done
 [ "${#ARGUMENTS[@]}" -le 1 ] || usage 1 >&2
 
 DEFINITION="${ARGUMENTS[0]}"
-[ -n "$DEFINITION" ] || DEFINITION="$(pyenv-local 2>/dev/null || true)"
+[ -n "$DEFINITION" ] || DEFINITION="$(scalaenv-local 2>/dev/null || true)"
 [ -n "$DEFINITION" ] || usage 1 >&2
 
 [ -n "$VERSION" ] || VERSION="${DEFINITION##*/}"
