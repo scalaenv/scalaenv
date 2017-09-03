@@ -91,7 +91,7 @@ $ brew upgrade --fetch-HEAD scalaenv
 
 **0.0.15** (Aug 17, 2017)
 
-  - Implemented `saclaenv uninstall`
+  - Implemented `scalaenv uninstall`
   - Enhanced `scalaenv install`
     - Added usage for `scalaenv install`
     - Added completions for  `scalaenv install`
