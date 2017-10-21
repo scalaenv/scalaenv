@@ -89,6 +89,10 @@ $ brew upgrade --fetch-HEAD scalaenv
 
 ### Version History
 
+0.0.16 (Oct 21, 2017)
+
+  - Added `scala-2.12.4`
+
 **0.0.15** (Aug 17, 2017)
 
   - Implemented `scalaenv uninstall`
