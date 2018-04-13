@@ -102,7 +102,7 @@ if [ -r "$completion" ]; then
 fi
 
 if [ -z "${no_rehash}" ]; then
-  echo 'command scalaenv rehash 2>/dev/null'
+  echo '(command scalaenv rehash 2>/dev/null &)'
 fi
 
 commands=(`scalaenv-commands --sh`)
