@@ -12,9 +12,15 @@ load test_helper
 }
 
 @test "auto rehash" {
-  run scalaenv-init -
+  run scalaenv-init - bash
   assert_success
   assert_line "(command scalaenv rehash 2>/dev/null &)"
+}
+
+@test "auto rehash (fish)" {
+  run scalaenv-init - fish
+  assert_success
+  assert_line "true (command scalaenv rehash 2>/dev/null &)"
 }
 
 @test "detect parent shell" {
