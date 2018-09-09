@@ -63,7 +63,7 @@ usage () {
 }
 
 definitions() {
-  ls -1 "$(abs_dirname $0/../../share/)" | grep -v '^d'
+  ls -1 "$(abs_dirname $0/../../share/)"
 }
 
 indent() {
