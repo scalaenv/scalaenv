@@ -89,6 +89,10 @@ $ brew upgrade --fetch-HEAD scalaenv
 
 ### Version History
 
+**0.1.2** (Seq, 10, 2018)
+  - fix `scalaenv install -l`
+  - [diff](https://github.com/scalaenv/scalaenv/compare/version/0.1.1...version/0.1.2)
+
 **0.1.1** (Sep 9, 2018)
   - Fix #59
   - [diff](https://github.com/scalaenv/scalaenv/compare/version/0.1.0...version/0.1.1)
