@@ -5,7 +5,7 @@ scalaenv
 
 Groom your app's Scala environment with scalaenv like [rbenv](https://github.com/sstephenson/rbenv) :)
 
-Do you need [**sbt**](http://www.scala-sbt.org) version management?  
+Do you need [**sbt**](http://www.scala-sbt.org) version management?
 Please refer to [**sbtenv**](https://github.com/sbtenv/sbtenv) in the case of use **sbt**.
 
 ### Installation
@@ -89,7 +89,14 @@ $ brew upgrade --fetch-HEAD scalaenv
 
 ### Version History
 
-**0.1.2** (Seq, 10, 2018)
+**0.1.4** (June, 18, 2019)
+  - Added new archive (**2.13.0**)
+
+**0.1.3** (Mar, 26, 2019)
+  - Added new archives (**2.12.7**, **2.12.8**, **2.13.0-RC1**)
+  - Fix the bug in `scalaenv install -l
+
+**0.1.2** (Sep, 10, 2018)
   - fix `scalaenv install -l`
   - [diff](https://github.com/scalaenv/scalaenv/compare/version/0.1.1...version/0.1.2)
 
@@ -116,7 +123,7 @@ $ brew upgrade --fetch-HEAD scalaenv
 
 **0.0.14** (Jul 28, 2017)
   * Added **dotty-0.2.0-RC1**
-  * Supported for fish shell :tada: 
+  * Supported for fish shell :tada:
     * https://github.com/scalaenv/scalaenv/pull/44
 
 **0.0.13** (Jun 25, 2017)
@@ -148,7 +155,7 @@ $ brew upgrade --fetch-HEAD scalaenv
 
 **0.0.8** (Aug 25, 2015)
 
-  * Added **Scala 2.11.5** - **Scala 2.11.7**, **Scala 2.12.0-M1** - **2.12.0-M2**  
+  * Added **Scala 2.11.5** - **Scala 2.11.7**, **Scala 2.12.0-M1** - **2.12.0-M2**
     Many thanks to @alexanderscott, @tdstein, @rwinzhang
 
 **0.0.7** (Nov 19, 2014)
