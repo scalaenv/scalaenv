@@ -1,0 +1,4 @@
+sites=(
+    "https://github.com/lampepfl/dotty/releases/download/0.7.0"
+    );
+archive_file="dotty-0.7.0.tar.gz"
