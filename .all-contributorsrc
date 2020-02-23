@@ -43,6 +43,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "tdstein",
+      "name": "Taylor Steinberg",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/6015574?v=4",
+      "profile": "http://taylorsteinberg.com",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
