@@ -142,6 +142,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "matsu-chara",
+      "name": "matsu-chara",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/1635885?v=4",
+      "profile": "https://twitter.com/matsu_chara",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
