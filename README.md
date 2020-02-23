@@ -98,7 +98,7 @@ $ brew upgrade --fetch-HEAD scalaenv
 
 **0.1.3** (Mar, 26, 2019)
   - Added new archives (**2.12.7**, **2.12.8**, **2.13.0-RC1**)
-  - Fix the bug in `scalaenv install -l
+  - Fix the bug in `scalaenv install -l`
 
 **0.1.2** (Sep, 10, 2018)
   - fix `scalaenv install -l`
