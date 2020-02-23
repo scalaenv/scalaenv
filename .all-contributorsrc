@@ -70,6 +70,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "dataich",
+      "name": "Taichiro Yoshida",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/15887?v=4",
+      "profile": "http://dataich.github.io/",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
