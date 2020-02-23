@@ -4,7 +4,7 @@ scalaenv
 [![Build Status](https://travis-ci.org/scalaenv/scalaenv.svg?branch=master)](https://travis-ci.org/scalaenv/scalaenv)
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-14-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-15-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 Groom your app's Scala environment with scalaenv like [rbenv](https://github.com/sstephenson/rbenv) :)
@@ -219,6 +219,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/Kaioru"><img src="https://avatars2.githubusercontent.com/u/6829787?v=4" width="100px;" alt=""/><br /><sub><b>Keith</b></sub></a><br /><a href="https://github.com/scalaenv/scalaenv/commits?author=Kaioru" title="Code">💻</a></td>
     <td align="center"><a href="http://andersonvom.github.io"><img src="https://avatars3.githubusercontent.com/u/69922?v=4" width="100px;" alt=""/><br /><sub><b>Anderson Mesquita</b></sub></a><br /><a href="https://github.com/scalaenv/scalaenv/commits?author=andersonvom" title="Code">💻</a></td>
     <td align="center"><a href="http://u.chimata.org/"><img src="https://avatars1.githubusercontent.com/u/80503?v=4" width="100px;" alt=""/><br /><sub><b>ɯ̹t͡ɕʲi</b></sub></a><br /><a href="https://github.com/scalaenv/scalaenv/commits?author=c18t" title="Code">💻</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/tmshn"><img src="https://avatars2.githubusercontent.com/u/3760893?v=4" width="100px;" alt=""/><br /><sub><b>Shinichi TAMURA</b></sub></a><br /><a href="https://github.com/scalaenv/scalaenv/commits?author=tmshn" title="Code">💻</a></td>
   </tr>
 </table>
 
