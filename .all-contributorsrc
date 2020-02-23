@@ -13,6 +13,16 @@
       "contributions": [
         "maintenance"
       ]
+    },
+    {
+      "login": "3tty0n",
+      "name": "Yusuke Izawa",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/8289812?v=4",
+      "profile": "https://3tty0n.github.io",
+      "contributions": [
+        "test",
+        "maintenance"
+      ]
     }
   ],
   "contributorsPerLine": 7,
