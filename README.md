@@ -4,7 +4,7 @@ scalaenv
 [![Build Status](https://travis-ci.org/scalaenv/scalaenv.svg?branch=master)](https://travis-ci.org/scalaenv/scalaenv)
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 Groom your app's Scala environment with scalaenv like [rbenv](https://github.com/sstephenson/rbenv) :)
@@ -207,6 +207,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://3tty0n.github.io"><img src="https://avatars2.githubusercontent.com/u/8289812?v=4" width="100px;" alt=""/><br /><sub><b>Yusuke Izawa</b></sub></a><br /><a href="https://github.com/scalaenv/scalaenv/commits?author=3tty0n" title="Tests">⚠️</a> <a href="#maintenance-3tty0n" title="Maintenance">🚧</a> <a href="https://github.com/scalaenv/scalaenv/commits?author=3tty0n" title="Code">💻</a></td>
     <td align="center"><a href="https://www.zaneli.com/"><img src="https://avatars2.githubusercontent.com/u/379820?v=4" width="100px;" alt=""/><br /><sub><b>Shunsuke Otani</b></sub></a><br /><a href="https://github.com/scalaenv/scalaenv/commits?author=zaneli" title="Code">💻</a> <a href="#maintenance-zaneli" title="Maintenance">🚧</a></td>
     <td align="center"><a href="https://ehrns.com"><img src="https://avatars2.githubusercontent.com/u/2118299?v=4" width="100px;" alt=""/><br /><sub><b>Alex Ehrnschwender</b></sub></a><br /><a href="https://github.com/scalaenv/scalaenv/commits?author=alexanderscott" title="Code">💻</a></td>
+    <td align="center"><a href="http://taylorsteinberg.com"><img src="https://avatars0.githubusercontent.com/u/6015574?v=4" width="100px;" alt=""/><br /><sub><b>Taylor Steinberg</b></sub></a><br /><a href="https://github.com/scalaenv/scalaenv/commits?author=tdstein" title="Code">💻</a></td>
   </tr>
 </table>
 
