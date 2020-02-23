@@ -4,7 +4,7 @@ scalaenv
 [![Build Status](https://travis-ci.org/scalaenv/scalaenv.svg?branch=master)](https://travis-ci.org/scalaenv/scalaenv)
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-15-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-16-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 Groom your app's Scala environment with scalaenv like [rbenv](https://github.com/sstephenson/rbenv) :)
@@ -222,6 +222,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/tmshn"><img src="https://avatars2.githubusercontent.com/u/3760893?v=4" width="100px;" alt=""/><br /><sub><b>Shinichi TAMURA</b></sub></a><br /><a href="https://github.com/scalaenv/scalaenv/commits?author=tmshn" title="Code">💻</a></td>
+    <td align="center"><a href="https://twitter.com/matsu_chara"><img src="https://avatars3.githubusercontent.com/u/1635885?v=4" width="100px;" alt=""/><br /><sub><b>matsu-chara</b></sub></a><br /><a href="https://github.com/scalaenv/scalaenv/commits?author=matsu-chara" title="Code">💻</a></td>
   </tr>
 </table>
 
