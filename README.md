@@ -204,7 +204,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tr>
     <td align="center"><a href="https://mazgi.github.io/"><img src="https://avatars2.githubusercontent.com/u/194222?v=4" width="100px;" alt=""/><br /><sub><b>Matsuki, Hidenori</b></sub></a><br /><a href="#maintenance-mazgi" title="Maintenance">🚧</a></td>
-    <td align="center"><a href="https://3tty0n.github.io"><img src="https://avatars2.githubusercontent.com/u/8289812?v=4" width="100px;" alt=""/><br /><sub><b>Yusuke Izawa</b></sub></a><br /><a href="https://github.com/scalaenv/scalaenv/commits?author=3tty0n" title="Tests">⚠️</a> <a href="#maintenance-3tty0n" title="Maintenance">🚧</a></td>
+    <td align="center"><a href="https://3tty0n.github.io"><img src="https://avatars2.githubusercontent.com/u/8289812?v=4" width="100px;" alt=""/><br /><sub><b>Yusuke Izawa</b></sub></a><br /><a href="https://github.com/scalaenv/scalaenv/commits?author=3tty0n" title="Tests">⚠️</a> <a href="#maintenance-3tty0n" title="Maintenance">🚧</a> <a href="https://github.com/scalaenv/scalaenv/commits?author=3tty0n" title="Code">💻</a></td>
   </tr>
 </table>
 
