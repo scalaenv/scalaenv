@@ -4,7 +4,7 @@ scalaenv
 [![Build Status](https://travis-ci.org/scalaenv/scalaenv.svg?branch=master)](https://travis-ci.org/scalaenv/scalaenv)
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 Groom your app's Scala environment with scalaenv like [rbenv](https://github.com/sstephenson/rbenv) :)
@@ -210,6 +210,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="http://taylorsteinberg.com"><img src="https://avatars0.githubusercontent.com/u/6015574?v=4" width="100px;" alt=""/><br /><sub><b>Taylor Steinberg</b></sub></a><br /><a href="https://github.com/scalaenv/scalaenv/commits?author=tdstein" title="Code">💻</a></td>
     <td align="center"><a href="https://www.linkedin.com/in/rwinzhang/"><img src="https://avatars2.githubusercontent.com/u/1652090?v=4" width="100px;" alt=""/><br /><sub><b>Erwin Zhang</b></sub></a><br /><a href="https://github.com/scalaenv/scalaenv/commits?author=rwinzhang" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/joprice"><img src="https://avatars1.githubusercontent.com/u/2175555?v=4" width="100px;" alt=""/><br /><sub><b>Joseph Price</b></sub></a><br /><a href="https://github.com/scalaenv/scalaenv/commits?author=joprice" title="Code">💻</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="http://dataich.github.io/"><img src="https://avatars3.githubusercontent.com/u/15887?v=4" width="100px;" alt=""/><br /><sub><b>Taichiro Yoshida</b></sub></a><br /><a href="https://github.com/scalaenv/scalaenv/commits?author=dataich" title="Code">💻</a></td>
   </tr>
 </table>
 
