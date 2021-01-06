@@ -1,0 +1,4 @@
+sites=(
+    "http://www.scala-lang.org/files/archive"
+    );
+archive_file="scala-2.13.0-RC2.tgz"

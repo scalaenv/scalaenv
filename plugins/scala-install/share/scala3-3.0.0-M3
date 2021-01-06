@@ -1,0 +1,5 @@
+sites=(
+    "https://github.com/lampepfl/dotty/releases/download/3.0.0-M3"
+    );
+archive_file="scala3-3.0.0-M3.tar.gz"
+
