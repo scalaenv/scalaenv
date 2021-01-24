@@ -8,6 +8,7 @@ scalaenv
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 Groom your app's Scala environment with scalaenv like [rbenv](https://github.com/sstephenson/rbenv) :)
+Support offered for all official versions, including **dotty** and **scala3**.
 
 Do you need [**sbt**](http://www.scala-sbt.org) version management?
 Please refer to [**sbtenv**](https://github.com/sbtenv/sbtenv) in the case of use **sbt**.
@@ -49,7 +50,7 @@ Please refer to [**sbtenv**](https://github.com/sbtenv/sbtenv) in the case of us
 5. Install each version of scala.
 
     ~~~ sh
-    $ scalaenv install scala-2.10.3
+    $ scalaenv install scala-2.13.4
     ~~~
 
     If show all available version, please use the following command:
@@ -57,17 +58,18 @@ Please refer to [**sbtenv**](https://github.com/sbtenv/sbtenv) in the case of us
     ~~~ sh
     $ scalaenv install -l
     All available versions:
-      scala-2.10.1
-      scala-2.10.2
-      scala-2.10.3
+      scala-2.13.1
+      scala-2.13.2
+      scala-2.13.3
+      scala-2.13.4
       ...
     ~~~
 
     If want to install manually, please download scala archive and extract into `~/.scalaenv/versions/`.
 
     ~~~ sh
-    $ curl -LO http://www.scala-lang.org/files/archive/scala-2.10.3.tgz
-    $ tar xf scala-2.10.3.tgz -C ~/.scalaenv/versions/
+    $ curl -LO http://www.scala-lang.org/files/archive/scala-2.13.4.tgz
+    $ tar xf scala-2.13.4.tgz -C ~/.scalaenv/versions/
     ~~~
 
 #### Homebrew on macOS
@@ -93,16 +95,22 @@ $ brew upgrade --fetch-HEAD scalaenv
 
 ### Version History
 
+**0.1.6** (Jan, 24, 2021)
+  - Added version **2.12.13**
+  - [diff](https://github.com/scalaenv/scalaenv/compare/version/0.1.5...version/0.1.6)
+
 **0.1.5** (Jan, 6, 2021)
-  - Added many new archives
+  - Added many new archives, including dotty and scala3
   - [diff](https://github.com/scalaenv/scalaenv/compare/version/0.1.4...version/0.1.5)
 
 **0.1.4** (June, 18, 2019)
   - Added new archive (**2.13.0**)
+  - [diff](https://github.com/scalaenv/scalaenv/compare/version/0.1.3...version/0.1.4)
 
 **0.1.3** (Mar, 26, 2019)
   - Added new archives (**2.12.7**, **2.12.8**, **2.13.0-RC1**)
   - Fix the bug in `scalaenv install -l`
+  - [diff](https://github.com/scalaenv/scalaenv/compare/version/0.1.2...version/0.1.3)  
 
 **0.1.2** (Sep, 10, 2018)
   - fix `scalaenv install -l`
@@ -113,21 +121,21 @@ $ brew upgrade --fetch-HEAD scalaenv
   - [diff](https://github.com/scalaenv/scalaenv/compare/version/0.1.0...version/0.1.1)
 
 **0.1.0** (Nov 12, 2017)
-
   - Added `scala-2.10.7` and `scala-2.11.12`
+  - [diff](https://github.com/scalaenv/scalaenv/compare/version/0.0.16...version/0.1.0)
 
 **0.0.16** (Oct 21, 2017)
-
   - Added `scala-2.12.4`
+  - [diff](https://github.com/scalaenv/scalaenv/compare/version/0.0.15...version/0.0.16)
 
 **0.0.15** (Aug 17, 2017)
-
   - Implemented `scalaenv uninstall`
   - Enhanced `scalaenv install`
     - Added usage for `scalaenv install`
     - Added completions for  `scalaenv install`
     - etc...
   - Added new scala archives (**2.12.3** and **2.13.0-M2**)
+  - [diff](https://github.com/scalaenv/scalaenv/compare/version/0.0.14...version/0.0.15)
 
 **0.0.14** (Jul 28, 2017)
   * Added **dotty-0.2.0-RC1**
@@ -210,21 +218,22 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://mazgi.github.io/"><img src="https://avatars2.githubusercontent.com/u/194222?v=4" width="100px;" alt=""/><br /><sub><b>Matsuki, Hidenori</b></sub></a><br /><a href="#maintenance-mazgi" title="Maintenance">🚧</a> <a href="https://github.com/scalaenv/scalaenv/commits?author=mazgi" title="Code">💻</a></td>
     <td align="center"><a href="https://3tty0n.github.io"><img src="https://avatars2.githubusercontent.com/u/8289812?v=4" width="100px;" alt=""/><br /><sub><b>Yusuke Izawa</b></sub></a><br /><a href="#maintenance-3tty0n" title="Maintenance">🚧</a> <a href="https://github.com/scalaenv/scalaenv/commits?author=3tty0n" title="Code">💻</a></td>
     <td align="center"><a href="https://www.zaneli.com/"><img src="https://avatars2.githubusercontent.com/u/379820?v=4" width="100px;" alt=""/><br /><sub><b>Shunsuke Otani</b></sub></a><br /><a href="#maintenance-zaneli" title="Maintenance">🚧</a> <a href="https://github.com/scalaenv/scalaenv/commits?author=zaneli" title="Code">💻</a></td>
+    <td align="center"><a href="https://mihaibogdaneugen.github.io/"><img src="https://avatars2.githubusercontent.com/u/7483233?v=4" width="100px;" alt=""/><br /><sub><b>Bogdan-Eugen Mihai</b></sub></a><br /><a href="#maintenance-MihaiBogdanEugen" title="Maintenance">🚧</a> <a href="https://github.com/scalaenv/scalaenv/commits?author=MihaiBogdanEugen" title="Code">💻</a></td>    
     <td align="center"><a href="https://ehrns.com"><img src="https://avatars2.githubusercontent.com/u/2118299?v=4" width="100px;" alt=""/><br /><sub><b>Alex Ehrnschwender</b></sub></a><br /><a href="https://github.com/scalaenv/scalaenv/commits?author=alexanderscott" title="Code">💻</a></td>
     <td align="center"><a href="http://taylorsteinberg.com"><img src="https://avatars0.githubusercontent.com/u/6015574?v=4" width="100px;" alt=""/><br /><sub><b>Taylor Steinberg</b></sub></a><br /><a href="https://github.com/scalaenv/scalaenv/commits?author=tdstein" title="Code">💻</a></td>
     <td align="center"><a href="https://www.linkedin.com/in/rwinzhang/"><img src="https://avatars2.githubusercontent.com/u/1652090?v=4" width="100px;" alt=""/><br /><sub><b>Erwin Zhang</b></sub></a><br /><a href="https://github.com/scalaenv/scalaenv/commits?author=rwinzhang" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/joprice"><img src="https://avatars1.githubusercontent.com/u/2175555?v=4" width="100px;" alt=""/><br /><sub><b>Joseph Price</b></sub></a><br /><a href="https://github.com/scalaenv/scalaenv/commits?author=joprice" title="Code">💻</a></td>
   </tr>
   <tr>
+    <td align="center"><a href="https://github.com/joprice"><img src="https://avatars1.githubusercontent.com/u/2175555?v=4" width="100px;" alt=""/><br /><sub><b>Joseph Price</b></sub></a><br /><a href="https://github.com/scalaenv/scalaenv/commits?author=joprice" title="Code">💻</a></td>  
     <td align="center"><a href="http://dataich.github.io/"><img src="https://avatars3.githubusercontent.com/u/15887?v=4" width="100px;" alt=""/><br /><sub><b>Taichiro Yoshida</b></sub></a><br /><a href="https://github.com/scalaenv/scalaenv/commits?author=dataich" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/odd"><img src="https://avatars0.githubusercontent.com/u/49301?v=4" width="100px;" alt=""/><br /><sub><b>Odd Möller</b></sub></a><br /><a href="https://github.com/scalaenv/scalaenv/commits?author=odd" title="Code">💻</a></td>
     <td align="center"><a href="http://ledin.me"><img src="https://avatars0.githubusercontent.com/u/1078685?v=4" width="100px;" alt=""/><br /><sub><b>Michael Ledin</b></sub></a><br /><a href="https://github.com/scalaenv/scalaenv/commits?author=mxl" title="Code">💻</a></td>
     <td align="center"><a href="http://blaisorblade.github.io/"><img src="https://avatars3.githubusercontent.com/u/289960?v=4" width="100px;" alt=""/><br /><sub><b>Paolo G. Giarrusso</b></sub></a><br /><a href="https://github.com/scalaenv/scalaenv/commits?author=Blaisorblade" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/Kaioru"><img src="https://avatars2.githubusercontent.com/u/6829787?v=4" width="100px;" alt=""/><br /><sub><b>Keith</b></sub></a><br /><a href="https://github.com/scalaenv/scalaenv/commits?author=Kaioru" title="Code">💻</a></td>
     <td align="center"><a href="http://andersonvom.github.io"><img src="https://avatars3.githubusercontent.com/u/69922?v=4" width="100px;" alt=""/><br /><sub><b>Anderson Mesquita</b></sub></a><br /><a href="https://github.com/scalaenv/scalaenv/commits?author=andersonvom" title="Code">💻</a></td>
-    <td align="center"><a href="http://u.chimata.org/"><img src="https://avatars1.githubusercontent.com/u/80503?v=4" width="100px;" alt=""/><br /><sub><b>ɯ̹t͡ɕʲi</b></sub></a><br /><a href="https://github.com/scalaenv/scalaenv/commits?author=c18t" title="Code">💻</a></td>
   </tr>
   <tr>
+    <td align="center"><a href="http://u.chimata.org/"><img src="https://avatars1.githubusercontent.com/u/80503?v=4" width="100px;" alt=""/><br /><sub><b>ɯ̹t͡ɕʲi</b></sub></a><br /><a href="https://github.com/scalaenv/scalaenv/commits?author=c18t" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/tmshn"><img src="https://avatars2.githubusercontent.com/u/3760893?v=4" width="100px;" alt=""/><br /><sub><b>Shinichi TAMURA</b></sub></a><br /><a href="https://github.com/scalaenv/scalaenv/commits?author=tmshn" title="Code">💻</a></td>
     <td align="center"><a href="https://twitter.com/matsu_chara"><img src="https://avatars3.githubusercontent.com/u/1635885?v=4" width="100px;" alt=""/><br /><sub><b>matsu-chara</b></sub></a><br /><a href="https://github.com/scalaenv/scalaenv/commits?author=matsu-chara" title="Code">💻</a></td>
     <td align="center"><a href="https://pthariensflame.wordpress.com"><img src="https://avatars1.githubusercontent.com/u/1847577?v=4" width="100px;" alt=""/><br /><sub><b>Alexander Ronald Altman</b></sub></a><br /><a href="https://github.com/scalaenv/scalaenv/commits?author=pthariensflame" title="Code">💻</a></td>
