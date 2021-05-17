@@ -95,6 +95,10 @@ $ brew upgrade --fetch-HEAD scalaenv
 
 ### Version History
 
+**0.1.13** (May, 17, 2021)
+  - Added version **2.13.6**
+  - [diff](https://github.com/scalaenv/scalaenv/compare/version/0.1.12...version/0.1.13)
+
 **0.1.12** (May, 13, 2021)
   - Added version **3.0.0**
   - [diff](https://github.com/scalaenv/scalaenv/compare/version/0.1.11...version/0.1.12)
