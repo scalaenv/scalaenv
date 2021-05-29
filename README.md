@@ -4,7 +4,7 @@ scalaenv
 [![Build Status](https://travis-ci.org/scalaenv/scalaenv.svg?branch=master)](https://travis-ci.org/scalaenv/scalaenv)
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-17-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-22-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 Groom your app's Scala environment with scalaenv like [rbenv](https://github.com/sstephenson/rbenv) :)
@@ -94,6 +94,10 @@ $ brew upgrade --fetch-HEAD scalaenv
 ~~~
 
 ### Version History
+
+**0.1.14** (May, 29, 2021)
+  - Added version **2.12.14**
+  - [diff](https://github.com/scalaenv/scalaenv/compare/version/0.1.13...version/0.1.14)
 
 **0.1.13** (May, 17, 2021)
   - Added version **2.13.6**
