@@ -1,0 +1,4 @@
+sites=(
+    "https://github.com/lampepfl/dotty/releases/download/3.2.0"
+    );
+archive_file="scala3-3.2.0.tar.gz"
